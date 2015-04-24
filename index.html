@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>法說會即時訊息平台</title>
+<script src="https://code.jquery.com/jquery-1.9.0.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="chat.js" ></script>
+<!--FB LIKE&SHARE START-->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '732854590142204',
+      xfbml      : true,
+      version    : 'v2.3'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<!--FB LIKE&SHARE END-->
+<link rel="stylesheet" href="style/bootstrap.min.css" />
+<link href="chat.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+}
+.header {
+	position: fixed;
+	width: 100%;
+	background: #222;
+	z-index: 10;
+}
+.header .navbar-brand {
+	font-weight: 900;
+}
+.header .navbar {
+	margin: 0;
+	border: none;
+}
+.page-section {
+	width: 100%;
+	min-height: 800px;
+	padding: 50px 0;
+	border-bottom: 10px solid #fff;
+}
+.page-section h1 {
+	font-size: 4em;
+	margin: 50px 0;
+}
+.page-section h1 span {
+	font-weight: 200;
+}
+.page-section h2 {
+	font-size: 3em;
+	font-weight: 900;
+	color: #fff;
+	margin: 0 0 30px;
+	text-shadow: 2px 2px 2px #000;
+}
+.page-section p {
+	font-size: 1.2em;
+	font-weight: 200;
+	margin: 0 0% 50px 0;
+}
+.page-section p.lead {
+	font-size: 1.8em;
+}
+.page-section p.caption {
+	color: #fff;
+	text-shadow: 1px 1px 1px #000;
+}
+.page-section.intro {
+	min-height: 600px;
+}
+.page-section#africa {
+	background: url(images/africa.jpg) top center no-repeat;
+}
+.page-section#antarctica {
+	background: url(images/antarctica.jpg) top center no-repeat;
+}
+.page-section#asia {
+	background: url(images/asia.jpg) top center no-repeat;
+}
+.page-section#australia {
+	background: url(images/australia.jpg) top center no-repeat;
+}
+.page-section#europe {
+	background: url(images/europe.jpg) top center no-repeat;
+}
+.page-section#north-america {
+	background: url(images/north-america.jpg) top center no-repeat;
+}
+.page-section#south-america {
+	background: url(images/south-america.jpg) top center no-repeat;
+}
+.btn {
+	font-weight: 200;
+}
+.btn-dark {
+	background: #444;
+	color: #fff;
+}
+.btn-dark:hover {
+	background: #000;
+	color: #fff;
+}
+.back-to-top {
+	display: inline-block;
+	clear: both;
+	background: #fff;
+	color: #333;
+	padding: 0 10px 5px;
+	margin: 20px 0 0;
+	text-shadow: none;
+}
+.back-to-top:hover {
+	background: #333;
+	color: #fff;
+	text-decoration: none;
+}
+hr {border-color: #ddd;}
+
+@media (min-width: 768px) {
+	.header .navbar-brand {
+		padding-left: 0;
+	}
+	.navbar-nav {
+		float: right;
+	}
+}
+@media (max-width: 480px) {
+	.page-section h1 {
+		font-size: 3em;
+	}
+	.page-section h2 {
+		font-size: 2em;
+	}
+	.page-section p {
+		font-size: 1em;
+		margin: 0 0 20px;
+	}
+}
+</style>
+</head>
+
+<body onload="init();">
+	<!--FB POSTS START-->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.3&appId=562992207161099";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!--FB POSTS END-->
+<div class="header">
+	<div class="container">
+		<nav class="navbar navbar-inverse" role="navigation">
+        	<div class="navbar-header">
+	            <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+	            </button>
+	            <a href="#" class="navbar-brand scroll-top">首頁</a>
+        	</div>
+        	<!--/.navbar-header-->
+	        <div id="main-nav" class="collapse navbar-collapse">
+	            <ul class="nav navbar-nav">
+		            <li><a href="#" class="scroll-link" data-id="africa">上銀科技</a></li>
+					<li><a href="#" class="scroll-link" data-id="antarctica">台積電</a></li>
+					<li><a href="#" class="scroll-link" data-id="asia">台灣神隆</a></li>
+					<li><a href="#" class="scroll-link" data-id="australia">南港輪胎</a></li>
+					<li><a href="#" class="scroll-link" data-id="europe">智威資訊</a></li>
+					<li><a href="#" class="scroll-link" data-id="north-america">智擎生技</a></li>
+					<li><a href="#" class="scroll-link" data-id="south-america">台虹科技</a></li>
+	            </ul>
+	        </div>
+	        <!--/.navbar-collapse-->
+	    </nav>
+	    <!--/.navbar-->
+	</div>
+	<!--/.container-->
+</div>
+<!--/.header-->
+
+<div class="page-section intro">
+	<div class="container">
+		<h1>法說會即時訊息平台<br/><span>2014年度法說會</span></h1>
+		<p class="lead">全球景氣雖可望持續復甦，但其力道恐將受限，速度可能較緩。此主要係因今年以來新興經濟體表現不佳、國際貿易擴張有限，且美國QE終究不會無限期延長，故各機構調降2013年與2014的經濟成長預測。</p>
+		<p>
+			<a href="#" class="scroll-link btn btn-dark" data-id="asia">觀看台灣神隆</a>
+			<a href="#" class="scroll-link btn btn-dark" data-id="europe">觀看智威資訊</a>
+			<a href="#" class="scroll-link btn btn-dark" data-id="australia">觀看南港輪胎</a>
+			<a href="#" class="scroll-link btn btn-dark" data-id="north-america">觀看智擎生技</a>
+			<a href="#" class="scroll-link btn btn-dark" data-id="south-america">觀看台虹科技</a>
+			<a href="#" class="scroll-link btn btn-dark" data-id="africa">觀看上銀科技</a>
+			<a href="#" class="scroll-link btn btn-dark" data-id="antarctica">觀看台積電</a>
+		</p>
+		<hr/>
+		<p>軟體開發者：胡奕堯</p>
+	</div>
+	<!--/.container-->
+</div>
+<!--/.page-section-->
+
+<div id="africa" class="page-section">
+	<div class="container" >
+		<h2>上銀科技(2049)</h2>
+		<div class="row">
+  				<div class="col-md-6">
+  					<iframe width="550" height="295" src="https://www.youtube.com/embed/d5ScjScjZCU" frameborder="0" allowfullscreen></iframe>
+  				</div>
+  				<div class="col-md-6">
+  					<div id="scroll"></div>
+					<input id="color" type="hidden" readonly="true" value="#000000" />
+			        <span id="sampleText"></span>
+			        <input align="right" type="text" id="userName" maxlength="10" size="10" onblur="checkUsername();"/>
+					<input type="text" id="messageBox" maxlength="2000" size="50" onkeydown="handleKey(event);"/>
+					<input type="button" value="Send" onclick="sendMessage();"/>
+					<input type="button" value="Delete All" onclick="deleteMessages();"/>	
+  				</div>
+		</div>
+		<p class="caption">
+			<tr>
+				<br/><a href="#" class="scroll-top back-to-top">&uarr;</a> 回首頁
+				<div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+		  	</tr>
+	  	</p>
+	</div>
+	<!--/.container-->
+</div>
+<!--/#africa-->
+
+<div id="antarctica" class="page-section">
+	<div class="container">
+		<h2>台積電(2330)</h2>
+		<div class="row">
+  			<div class="col-md-6">
+  				<iframe width="550" height="295" src="https://www.youtube.com/embed/kPf2JQOcxZY" frameborder="0" allowfullscreen></iframe>
+  			</div>
+  			<div class="col-md-6">
+  				<div class="fb-post" data-href="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553" data-width="500"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553"><p>Be the first to know when we release a new video by subscribing to our official Facebook Developers YouTube channel!  http://www.youtube.com/facebookdevelopers</p>Posted by <a href="https://www.facebook.com/FacebookDevelopers">Facebook Developers</a> on <a href="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553">2013年5月29日</a></blockquote></div></div>
+  			</div>
+		</div>
+		<p class="caption">
+			<tr>
+				<br/><a href="#" class="scroll-top back-to-top">&uarr;</a> 回首頁
+				<div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+		  	</tr>
+	  	</p>
+	</div>
+	<!--/.container-->
+</div>
+<!--/#antarctica-->
+
+<div id="asia" class="page-section">
+	<div class="container">
+		<h2>台灣神隆(1789)</h2>
+		<div class="row">
+  			<div class="col-md-6">
+  				<iframe width="550" height="295" src="https://www.youtube.com/embed/REpRuGPS6C8" frameborder="0" allowfullscreen></iframe>
+  			</div>
+  			<div class="col-md-6"></div>
+		</div>
+		<p class="caption">
+			<tr>
+				<br/><a href="#" class="scroll-top back-to-top">&uarr;</a> 回首頁
+		  	</tr>
+	  	</p>
+	</div>
+	<!--/.container-->
+</div>
+<!--/#asia-->
+
+<div id="australia" class="page-section">
+	<div class="container">
+		<h2>南港輪胎(2101)</h2>
+		<div class="row">
+  			<div class="col-md-6">
+  				<iframe width="550" height="295" src="https://www.youtube.com/embed/zpGy2XJWqV4" frameborder="0" allowfullscreen></iframe>
+  			</div>
+  			<div class="col-md-6"></div>
+		</div>
+		<p class="caption">
+			<tr>
+				<br/><a href="#" class="scroll-top back-to-top">&uarr;</a> 回首頁
+		  	</tr>
+	  	</p>
+	</div>
+	<!--/.container-->
+</div>
+<!--/#australia-->
+
+<div id="europe" class="page-section">
+	<div class="container">
+		<h2>智威資訊(5263)</h2>
+		<div class="row">
+  			<div class="col-md-6">
+  				<iframe width="550" height="295" src="https://www.youtube.com/embed/9lE-qMOlqn8" frameborder="0" allowfullscreen></iframe>
+  			</div>
+  			<div class="col-md-6"></div>
+		</div>
+		<p class="caption">
+			<tr>
+				<br/><a href="#" class="scroll-top back-to-top">&uarr;</a> 回首頁
+		  	</tr>
+	  	</p>
+	</div>
+	<!--/.container-->
+</div>
+<!--/#europe-->
+
+<div id="north-america" class="page-section">
+	<div class="container">
+		<h2>智擎生技(4162)</h2>
+		<div class="row">
+  			<div class="col-md-6">
+  				<iframe width="550" height="295" src="https://www.youtube.com/embed/znzwnusRo_0" frameborder="0" allowfullscreen></iframe>
+  			</div>
+  			<div class="col-md-6"></div>
+		</div>
+		<p class="caption">
+			<tr>
+				<br/><a href="#" class="scroll-top back-to-top">&uarr;</a> 回首頁
+		  	</tr>
+	  	</p>
+	</div>
+	<!--/.container-->
+</div>
+<!--/#north-america-->
+
+<div id="south-america" class="page-section">
+	<div class="container">
+		<h2>台虹科技(8039)</h2>
+		<div class="row">
+  			<div class="col-md-6">
+  				<iframe width="550" height="295" src="https://www.youtube.com/embed/lDjlZlYtXXQ" frameborder="0" allowfullscreen></iframe>
+  			</div>
+  			<div class="col-md-6"></div>
+		</div>
+		<p class="caption">
+			<tr>
+				<br/><a href="#" class="scroll-top back-to-top">&uarr;</a> 回首頁
+		  	</tr>
+	  	</p>
+	</div>
+	<!--/.container-->
+</div>
+<!--/#north-america-->
+
+<div class="page-section">
+	<div class="container">
+		<!--<h3>Thanks for checking out this demo!</h3>-->
+		<p>提供之即時訊息等，係由youtube提供，僅供投資者參考，不保證其即時性、正確性或完整性。</br>投資者仍應依自己之判斷委託買賣，不得對本網站主張任何權利。</p>
+		<hr/>
+		<p>軟體開發者：胡奕堯</p>
+	</div>
+</div>
+<!--/.page-section-->
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	// navigation click actions	
+	$('.scroll-link').on('click', function(event){
+		event.preventDefault();
+		var sectionID = $(this).attr("data-id");
+		scrollToID('#' + sectionID, 750);
+	});
+	// scroll to top action
+	$('.scroll-top').on('click', function(event) {
+		event.preventDefault();
+		$('html, body').animate({scrollTop:0}, 'slow'); 		
+	});
+	// mobile nav toggle
+	$('#nav-toggle').on('click', function (event) {
+		event.preventDefault();
+		$('#main-nav').toggleClass("open");
+	});
+});
+// scroll function
+function scrollToID(id, speed){
+	var offSet = 50;
+	var targetOffset = $(id).offset().top - offSet;
+	var mainNav = $('#main-nav');
+	$('html,body').animate({scrollTop:targetOffset}, speed);
+	if (mainNav.hasClass("open")) {
+		mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+		mainNav.removeClass("open");
+	}
+}
+if (typeof console === "undefined") {
+    console = {
+        log: function() { }
+    };
+}
+</script>
+</body>
+</html>
