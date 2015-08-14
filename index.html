@@ -3,31 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>法說會即時訊息平台</title>
-<script src="https://code.jquery.com/jquery-1.9.0.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-1.0.0.js"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="chat.js" ></script>
-<!--FB LIKE&SHARE START-->
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '732854590142204',
-      xfbml      : true,
-      version    : 'v2.3'
-    });
-  };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-<!--FB LIKE&SHARE END-->
-<link rel="stylesheet" href="style/bootstrap.min.css" />
-<link href="chat.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 * {
 	margin: 0;
@@ -154,17 +130,6 @@ hr {border-color: #ddd;}
 </head>
 
 <body onload="init();">
-	<!--FB POSTS START-->
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.3&appId=562992207161099";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	</script>
-	<!--FB POSTS END-->
 <div class="header">
 	<div class="container">
 		<nav class="navbar navbar-inverse" role="navigation">
@@ -221,18 +186,19 @@ hr {border-color: #ddd;}
 	<div class="container" >
 		<h2>上銀科技(2049)</h2>
 		<div class="row">
-  				<div class="col-md-6">
-  					<iframe width="550" height="295" src="https://www.youtube.com/embed/d5ScjScjZCU" frameborder="0" allowfullscreen></iframe>
-  				</div>
-  				<div class="col-md-6">
-  					<div id="scroll"></div>
-					<input id="color" type="hidden" readonly="true" value="#000000" />
-			        <span id="sampleText"></span>
-			        <input align="right" type="text" id="userName" maxlength="10" size="10" onblur="checkUsername();"/>
-					<input type="text" id="messageBox" maxlength="2000" size="50" onkeydown="handleKey(event);"/>
-					<input type="button" value="Send" onclick="sendMessage();"/>
-					<input type="button" value="Delete All" onclick="deleteMessages();"/>	
-  				</div>
+  			<div class="col-md-6 pull-left">
+  				<!-- 法說會影片 -->
+  			 	<div id="2049"></div>
+  			</div>
+  			<div class="col-md-6 pull-right">
+  				<div id="scroll"></div>
+				<input id="color" type="hidden" readonly="true" value="#000000" />
+		        <span id="sampleText"></span>
+		        <input align="right" type="text" id="userName" maxlength="10" size="10" onblur="checkUsername();"/>
+				<input type="text" id="messageBox" maxlength="2000" size="50" onkeydown="handleKey(event);"/>
+				<input type="button" value="Send" onclick="sendMessage();"/>
+				<input type="button" value="Delete All" onclick="deleteMessages();"/>	
+  			</div>
 		</div>
 		<p class="caption">
 			<tr>
@@ -250,7 +216,8 @@ hr {border-color: #ddd;}
 		<h2>台積電(2330)</h2>
 		<div class="row">
   			<div class="col-md-6">
-  				<iframe width="550" height="295" src="https://www.youtube.com/embed/kPf2JQOcxZY" frameborder="0" allowfullscreen></iframe>
+  				<!-- 法說會影片 -->
+  			 	<div id="2330"></div>
   			</div>
   			<div class="col-md-6">
   				<div class="fb-post" data-href="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553" data-width="500"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553"><p>Be the first to know when we release a new video by subscribing to our official Facebook Developers YouTube channel!  http://www.youtube.com/facebookdevelopers</p>Posted by <a href="https://www.facebook.com/FacebookDevelopers">Facebook Developers</a> on <a href="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553">2013年5月29日</a></blockquote></div></div>
@@ -272,7 +239,8 @@ hr {border-color: #ddd;}
 		<h2>台灣神隆(1789)</h2>
 		<div class="row">
   			<div class="col-md-6">
-  				<iframe width="550" height="295" src="https://www.youtube.com/embed/REpRuGPS6C8" frameborder="0" allowfullscreen></iframe>
+  				<!-- 法說會影片 -->
+  				<div id="1789"></div>
   			</div>
   			<div class="col-md-6"></div>
 		</div>
@@ -291,7 +259,8 @@ hr {border-color: #ddd;}
 		<h2>南港輪胎(2101)</h2>
 		<div class="row">
   			<div class="col-md-6">
-  				<iframe width="550" height="295" src="https://www.youtube.com/embed/zpGy2XJWqV4" frameborder="0" allowfullscreen></iframe>
+  				<!-- 法說會影片 -->
+  				<div id="2101"></div>
   			</div>
   			<div class="col-md-6"></div>
 		</div>
@@ -310,7 +279,8 @@ hr {border-color: #ddd;}
 		<h2>智威資訊(5263)</h2>
 		<div class="row">
   			<div class="col-md-6">
-  				<iframe width="550" height="295" src="https://www.youtube.com/embed/9lE-qMOlqn8" frameborder="0" allowfullscreen></iframe>
+  				<!-- 法說會影片 -->
+  				<div id="5263"></div>
   			</div>
   			<div class="col-md-6"></div>
 		</div>
@@ -329,7 +299,8 @@ hr {border-color: #ddd;}
 		<h2>智擎生技(4162)</h2>
 		<div class="row">
   			<div class="col-md-6">
-  				<iframe width="550" height="295" src="https://www.youtube.com/embed/znzwnusRo_0" frameborder="0" allowfullscreen></iframe>
+  				<!-- 法說會影片 -->
+  				<div id="4162"></div>
   			</div>
   			<div class="col-md-6"></div>
 		</div>
@@ -348,7 +319,8 @@ hr {border-color: #ddd;}
 		<h2>台虹科技(8039)</h2>
 		<div class="row">
   			<div class="col-md-6">
-  				<iframe width="550" height="295" src="https://www.youtube.com/embed/lDjlZlYtXXQ" frameborder="0" allowfullscreen></iframe>
+  				<!-- 法說會影片 -->
+  				<div id="8039"></div>
   			</div>
   			<div class="col-md-6"></div>
 		</div>
@@ -370,8 +342,136 @@ hr {border-color: #ddd;}
 		<p>軟體開發者：胡奕堯</p>
 	</div>
 </div>
-<!--/.page-section-->
 
+<!--YouTube API START-->
+	<script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player) after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('2049', {
+          height: '295',
+          width: '550',
+          videoId: 'd5ScjScjZCU',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        player = new YT.Player('2330', {
+          height: '295',
+          width: '550',
+          videoId: 'kPf2JQOcxZY',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        player = new YT.Player('1789', {
+          height: '295',
+          width: '550',
+          videoId: 'REpRuGPS6C8',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        player = new YT.Player('2101', {
+          height: '295',
+          width: '550',
+          videoId: 'zpGy2XJWqV4',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        player = new YT.Player('5263', {
+          height: '295',
+          width: '550',
+          videoId: '9lE-qMOlqn8',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        player = new YT.Player('4162', {
+          height: '295',
+          width: '550',
+          videoId: 'znzwnusRo_0',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        player = new YT.Player('8039', {
+          height: '295',
+          width: '550',
+          videoId: 'lDjlZlYtXXQ',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+	<!--YouTube API END-->
+	
+	<!--FB POSTS START-->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.3&appId=562992207161099";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!--FB POSTS END-->
+
+<!--/.page-section-->
+<script src="https://code.jquery.com/jquery-1.9.0.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="chat.js" ></script>
+<!--FB LIKE&SHARE START-->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '732854590142204',
+      xfbml      : true,
+      version    : 'v2.3'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<!--FB LIKE&SHARE END-->
+<link rel="stylesheet" href="style/bootstrap.min.css" />
+<link href="chat.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 $(document).ready(function() {

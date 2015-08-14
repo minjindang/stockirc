@@ -86,7 +86,7 @@ class Chat
       '       DATE_FORMAT(posted_on, "%Y-%m-%d %H:%i:%s") AS posted_on ' .
       '     FROM chat ' .
       '     ORDER BY chat_id DESC ' .
-      '      LIMIT 50) AS Last50' . 
+      '      LIMIT 50) AS Last500' . 
       ' ORDER BY chat_id ASC';
     } 
     // execute the query

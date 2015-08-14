@@ -1,0 +1,13 @@
+mysql console
+mysql-ctl cli
+
+# start MySQL. Will create an empty database on first start
+$ mysql-ctl start
+
+# stop MySQL
+$ mysql-ctl stop
+use ajax;
+TRUNCATE TABLE chat;
+
+# Get MySQL Hostname
+SHOW VARIABLES WHERE Variable_name = 'hostname';
