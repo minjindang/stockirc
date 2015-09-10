@@ -40,7 +40,7 @@ elseif($mode == 'RetrieveNew')
 if(ob_get_length()) ob_clean();
 // Headers are sent to prevent browsers from caching
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
-header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT'); 
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s'));
 header('Cache-Control: no-cache, must-revalidate'); 
 header('Pragma: no-cache');
 header('Content-Type: text/xml');

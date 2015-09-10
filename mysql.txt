@@ -2,12 +2,19 @@ mysql console
 mysql-ctl cli
 
 # start MySQL. Will create an empty database on first start
-$ mysql-ctl start
+mysql-ctl start
 
 # stop MySQL
-$ mysql-ctl stop
+mysql-ctl stop
+
+# show databases
+show databases;
+
 use ajax;
 TRUNCATE TABLE chat;
 
 # Get MySQL Hostname
 SHOW VARIABLES WHERE Variable_name = 'hostname';
+
+SHOW VARIABLES LIKE '%time_zone%';
+SET TIME_ZONE='+8:00';
