@@ -1,4 +1,4 @@
-mysql console
+#mysql console
 mysql-ctl cli
 
 # start MySQL. Will create an empty database on first start
