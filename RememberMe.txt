@@ -3,3 +3,7 @@
 20150507 出現documentElement錯誤訊息,這次是31句話就掛掉了~~~(觀察中...
 20150507 chat.class.php  第89行 LIMIT 50) AS Last500' . 
 20150518 Error accessing the server! TypeError: Cannot read property 'documentElement' of null
+
+echo '{}' > composer.json
+git add composer.json
+git commit -m "add composer.json for PHP app detection"
